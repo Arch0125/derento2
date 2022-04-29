@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { ethers } from "ethers"
 import useContract from '../hooks/useContract'
 import useProvider from '../hooks/useProvider'
+import ImageUploader from './Imageuploader'
 
 function HomePage() {
   const [currentAccount, setCurrentAccount] = useState()
@@ -55,6 +56,8 @@ function HomePage() {
       <p>Account: {currentAccount}</p>
       <p>Balance: {balance} ETH</p>
       <hr />
+      <ImageUploader/>
+      <hr/>
       <h2>List item for Rent</h2>
       <form onSubmit={handleSubmit}>
         <input placeholder='Rent' name='name' />
