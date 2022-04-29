@@ -5,16 +5,18 @@ contract TodoList {
     struct Todo {
         string todo;
         string description;
+        string price;
+        string duration;
         bool isReady;
     }
 
     mapping(address => Todo[]) todos;
 
-    function addTodo(string memory _todo, string memory _description)
+    function addTodo(string memory _todo, string memory _description, string memory _price, string memory _duration)
         public
         returns (Todo memory)
     {
-        Todo memory todo = Todo(_todo, _description, false);
+        Todo memory todo = Todo(_todo, _description, _price, _duration, false);
         todos[msg.sender].push(todo);
         return todo;
     }
@@ -35,9 +37,11 @@ contract TodoList {
         uint256 _id,
         string memory _todo,
         string memory _description,
+        string memory _price,
+        string memory _duration,
         bool isReady
     ) public returns (Todo memory) {
-        todos[msg.sender][_id] = Todo(_todo, _description, isReady);
+        todos[msg.sender][_id] = Todo(_todo, _description, _price, _duration, isReady);
         return todos[msg.sender][_id];
     }
 
