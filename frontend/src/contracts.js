@@ -1,7 +1,7 @@
-import TodoListABI from './abi/TodoList.json'
+import RentListABI from './abi/RentList.json'
 
 const contracts = {
-  'TodoList': { abi: TodoListABI, address: '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9' }
+  'RentList': { abi: RentListABI, address: '0xa513E6E4b8f2a923D98304ec87F64353C4D5C853' }
 };
 
 export default contracts

@@ -6,7 +6,7 @@ import useProvider from '../hooks/useProvider'
 function HomePage() {
   const [currentAccount, setCurrentAccount] = useState()
   const provider = useProvider()
-  const contract = useContract('TodoList');
+  const contract = useContract('RentList');
   const [rentlist, setRentlist] = useState([]);
   const [balance, setBalance] = useState();
 
@@ -20,31 +20,31 @@ function HomePage() {
           .then(ethers.utils.formatEther)
           .then(setBalance);
         
-        contract.getTodos().then(setRentlist);
-        contract.getTodos().then(console.log);
+        contract.getRents().then(setRentlist);
+        contract.getRents().then(console.log);
       });  
   }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const todo = e.target.todo.value;
+    const name = e.target.name.value;
     const description = e.target.description.value;
     const price = e.target.price.value;
     const duration = e.target.duration.value;
 
-    contract.addTodo(todo, description,price,duration).then(() => {
-      e.target.todo.value = '';
+    contract.addRent(name, description,price,duration).then(() => {
+      e.target.name.value = '';
       e.target.description.value = '';
       e.target.price.value='';
       e.target.duration.value='';
-      setRentlist(rentlist => [...rentlist, {todo, description, price, duration, _id: rentlist.length}]);
+      setRentlist(rentlist => [...rentlist, {name, description, price, duration, _id: rentlist.length}]);
     });
   };
 
   const removeHandler = (id) => {
     return () => {
-      contract.removeTodo(id).then(() => {
-        setRentlist(rentlist => rentlist.filter((todo, key) => key !== id));
+      contract.removeRent(id).then(() => {
+        setRentlist(rentlist => rentlist.filter((name, key) => key !== id));
       });
     }
   }
@@ -57,7 +57,7 @@ function HomePage() {
       <hr />
       <h2>List item for Rent</h2>
       <form onSubmit={handleSubmit}>
-        <input placeholder='Todo' name='todo' />
+        <input placeholder='Rent' name='name' />
         <input placeholder='Description' name='description' />
         <input placeholder='Price' name='price' />
         <input placeholder='Duration' name='duration' />
@@ -78,7 +78,7 @@ function HomePage() {
           {rentlist.map((rents, key) => {
             return (
               <tr key={key}>
-                <td>{rents.todo}</td>
+                <td>{rents.name}</td>
                 <td>{rents.description}</td>
                 <td>{rents.price}</td>
                 <td>{rents.duration}</td>

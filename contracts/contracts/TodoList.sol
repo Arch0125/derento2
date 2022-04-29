@@ -1,52 +1,52 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
-contract TodoList {
-    struct Todo {
-        string todo;
+contract RentList {
+    struct Rent {
+        string name;
         string description;
         string price;
         string duration;
         bool isReady;
     }
 
-    mapping(address => Todo[]) todos;
+    mapping(address => Rent[]) rents;
 
-    function addTodo(string memory _todo, string memory _description, string memory _price, string memory _duration)
+    function addRent(string memory _name, string memory _description, string memory _price, string memory _duration)
         public
-        returns (Todo memory)
+        returns (Rent memory)
     {
-        Todo memory todo = Todo(_todo, _description, _price, _duration, false);
-        todos[msg.sender].push(todo);
-        return todo;
+        Rent memory name = Rent(_name, _description, _price, _duration, false);
+        rents[msg.sender].push(name);
+        return name;
     }
 
-    function getTodos() public view returns (Todo[] memory) {
-        return todos[msg.sender];
+    function getRents() public view returns (Rent[] memory) {
+        return rents[msg.sender];
     }
 
-    function removeTodo(uint256 _id) public returns (Todo[] memory) {
-        todos[msg.sender][_id] = todos[msg.sender][
-            todos[msg.sender].length - 1
+    function removeRent(uint256 _id) public returns (Rent[] memory) {
+        rents[msg.sender][_id] = rents[msg.sender][
+            rents[msg.sender].length - 1
         ];
-        todos[msg.sender].pop();
-        return todos[msg.sender];
+        rents[msg.sender].pop();
+        return rents[msg.sender];
     }
 
-    function editTodo(
+    function editRent(
         uint256 _id,
-        string memory _todo,
+        string memory _name,
         string memory _description,
         string memory _price,
         string memory _duration,
         bool isReady
-    ) public returns (Todo memory) {
-        todos[msg.sender][_id] = Todo(_todo, _description, _price, _duration, isReady);
-        return todos[msg.sender][_id];
+    ) public returns (Rent memory) {
+        rents[msg.sender][_id] = Rent(_name, _description, _price, _duration, isReady);
+        return rents[msg.sender][_id];
     }
 
-    function markAsReady(uint256 _id) public returns (Todo memory) {
-        todos[msg.sender][_id].isReady = true;
-        return todos[msg.sender][_id];
+    function markAsReady(uint256 _id) public returns (Rent memory) {
+        rents[msg.sender][_id].isReady = true;
+        return rents[msg.sender][_id];
     }
 }

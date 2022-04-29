@@ -14,12 +14,12 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const TodoList = await hre.ethers.getContractFactory("TodoList");
-  const todoList = await TodoList.deploy();
+  const RentList = await hre.ethers.getContractFactory("RentList");
+  const rentList = await RentList.deploy();
 
-  await todoList.deployed();
+  await rentList.deployed();
 
-  console.log("TodoList deployed to:", todoList.address);
+  console.log("RentList deployed to:", rentList.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
