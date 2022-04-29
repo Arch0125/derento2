@@ -7,7 +7,7 @@ function HomePage() {
   const [currentAccount, setCurrentAccount] = useState()
   const provider = useProvider()
   const contract = useContract('TodoList');
-  const [todos, setTodos] = useState([]);
+  const [rentlist, setRentlist] = useState([]);
   const [balance, setBalance] = useState();
 
 
@@ -20,7 +20,7 @@ function HomePage() {
           .then(ethers.utils.formatEther)
           .then(setBalance);
         
-        contract.getTodos().then(setTodos);
+        contract.getTodos().then(setRentlist);
         contract.getTodos().then(console.log);
       });  
   }, [])
@@ -37,14 +37,14 @@ function HomePage() {
       e.target.description.value = '';
       e.target.price.value='';
       e.target.duration.value='';
-      setTodos(todos => [...todos, {todo, description, price, duration, _id: todos.length}]);
+      setRentlist(rentlist => [...rentlist, {todo, description, price, duration, _id: rentlist.length}]);
     });
   };
 
   const removeHandler = (id) => {
     return () => {
       contract.removeTodo(id).then(() => {
-        setTodos(todos => todos.filter((todo, key) => key !== id));
+        setRentlist(rentlist => rentlist.filter((todo, key) => key !== id));
       });
     }
   }
@@ -75,13 +75,13 @@ function HomePage() {
           </tr>
         </thead>
         <tbody>
-          {todos.map((todo, key) => {
+          {rentlist.map((rents, key) => {
             return (
               <tr key={key}>
-                <td>{todo.todo}</td>
-                <td>{todo.description}</td>
-                <td>{todo.price}</td>
-                <td>{todo.duration}</td>
+                <td>{rents.todo}</td>
+                <td>{rents.description}</td>
+                <td>{rents.price}</td>
+                <td>{rents.duration}</td>
                 <td>
                   <button onClick={removeHandler(key)}>Apply for Rent</button>
                 </td>
