@@ -28,17 +28,19 @@ function HomePage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const image = e.target.image.value;
     const name = e.target.name.value;
     const description = e.target.description.value;
     const price = e.target.price.value;
     const duration = e.target.duration.value;
 
-    contract.addRent(name, description,price,duration).then(() => {
+    contract.addRent(image, name, description,price,duration).then(() => {
+      e.target.image.value='';
       e.target.name.value = '';
       e.target.description.value = '';
       e.target.price.value='';
       e.target.duration.value='';
-      setRentlist(rentlist => [...rentlist, {name, description, price, duration, _id: rentlist.length}]);
+      setRentlist(rentlist => [...rentlist, {image, name, description, price, duration, _id: rentlist.length}]);
     });
   };
 
@@ -64,12 +66,14 @@ function HomePage() {
         <input placeholder='Description' name='description' />
         <input placeholder='Price' name='price' />
         <input placeholder='Duration' name='duration' />
+        <input placeholder='Image Hash' name='image' />
         <button>Create</button>
       </form>
       <h2>Items for Rent</h2>
       <table style={{width: '100%', textAlign: 'center'}}>
         <thead>
           <tr>
+            <th>Image</th>
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
@@ -81,6 +85,7 @@ function HomePage() {
           {rentlist.map((rents, key) => {
             return (
               <tr key={key}>
+                <td><img src={rents.image} width="200px" /></td>
                 <td>{rents.name}</td>
                 <td>{rents.description}</td>
                 <td>{rents.price}</td>

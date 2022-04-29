@@ -2,6 +2,11 @@
   "inputs": [
     {
       "internalType": "string",
+      "name": "_image",
+      "type": "string"
+    },
+    {
+      "internalType": "string",
       "name": "_name",
       "type": "string"
     },
@@ -25,6 +30,11 @@
   "outputs": [
     {
       "components": [
+        {
+          "internalType": "string",
+          "name": "image",
+          "type": "string"
+        },
         {
           "internalType": "string",
           "name": "name",
@@ -68,6 +78,11 @@
     },
     {
       "internalType": "string",
+      "name": "_image",
+      "type": "string"
+    },
+    {
+      "internalType": "string",
       "name": "_name",
       "type": "string"
     },
@@ -96,6 +111,11 @@
   "outputs": [
     {
       "components": [
+        {
+          "internalType": "string",
+          "name": "image",
+          "type": "string"
+        },
         {
           "internalType": "string",
           "name": "name",
@@ -136,6 +156,11 @@
   "outputs": [
     {
       "components": [
+        {
+          "internalType": "string",
+          "name": "image",
+          "type": "string"
+        },
         {
           "internalType": "string",
           "name": "name",
@@ -184,6 +209,11 @@
       "components": [
         {
           "internalType": "string",
+          "name": "image",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
           "name": "name",
           "type": "string"
         },
@@ -228,6 +258,11 @@
   "outputs": [
     {
       "components": [
+        {
+          "internalType": "string",
+          "name": "image",
+          "type": "string"
+        },
         {
           "internalType": "string",
           "name": "name",

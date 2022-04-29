@@ -3,6 +3,7 @@ pragma solidity ^0.8.0;
 
 contract RentList {
     struct Rent {
+        string image;
         string name;
         string description;
         string price;
@@ -12,11 +13,11 @@ contract RentList {
 
     mapping(address => Rent[]) rents;
 
-    function addRent(string memory _name, string memory _description, string memory _price, string memory _duration)
+    function addRent(string memory _image, string memory _name, string memory _description, string memory _price, string memory _duration)
         public
         returns (Rent memory)
     {
-        Rent memory name = Rent(_name, _description, _price, _duration, false);
+        Rent memory name = Rent(_image, _name, _description, _price, _duration, false);
         rents[msg.sender].push(name);
         return name;
     }
@@ -35,13 +36,14 @@ contract RentList {
 
     function editRent(
         uint256 _id,
+        string memory _image,
         string memory _name,
         string memory _description,
         string memory _price,
         string memory _duration,
         bool isReady
     ) public returns (Rent memory) {
-        rents[msg.sender][_id] = Rent(_name, _description, _price, _duration, isReady);
+        rents[msg.sender][_id] = Rent(_image, _name, _description, _price, _duration, isReady);
         return rents[msg.sender][_id];
     }
 

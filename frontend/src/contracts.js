@@ -1,7 +1,7 @@
 import RentListABI from './abi/RentList.json'
 
 const contracts = {
-  'RentList': { abi: RentListABI, address: '0xa513E6E4b8f2a923D98304ec87F64353C4D5C853' }
+  'RentList': { abi: RentListABI, address: '0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e' }
 };
 
 export default contracts
